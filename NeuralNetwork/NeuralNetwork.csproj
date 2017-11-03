@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Apocalibs.ArtificialIntelligence.NeuralNetwork</AssemblyName>
+    <RootNamespace>Apocalibs.ArtificialIntelligence.NeuralNetwork</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Enumerables\Enumerables.csproj" />
+    <ProjectReference Include="..\MathExtensions\Mathematics.csproj" />
+  </ItemGroup>
+
+</Project>
