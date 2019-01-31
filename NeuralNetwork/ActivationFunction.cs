@@ -4,7 +4,7 @@ using System;
 
 namespace Apocalibs.ArtificialIntelligence.NeuralNetwork
 {
-    public delegate OneRange ActivationFunction(double value);
+    public delegate Scalar ActivationFunction(double value);
 
     public static class ActivationFunctions
     {

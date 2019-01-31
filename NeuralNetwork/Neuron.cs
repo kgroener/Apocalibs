@@ -13,7 +13,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork
         private List<Synapse> _outputSynapses;
         private readonly double _bias;
         private List<Synapse> _inputSynapses;
-        private OneRange? _value;
+        private Scalar? _value;
 
         public Neuron(ActivationFunction activationFunction, double bias)
         {
@@ -23,7 +23,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork
             _bias = bias;
         }
 
-        public OneRange GetValue()
+        public Scalar GetValue()
         {
             lock (_valueLock)
             {
@@ -31,7 +31,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork
             }
         }
 
-        private OneRange CalculateValue()
+        private Scalar CalculateValue()
         {
             if (_activationFunction == null)
             {
@@ -41,7 +41,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork
             return _activationFunction(_inputSynapses.Sum(s => s.NeuronIn.GetValue() * s.Weight) + _bias);
         }
 
-        public void SetValue(OneRange value)
+        public void SetValue(Scalar value)
         {
             SetValueInternal(value);
         }
@@ -51,7 +51,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork
             SetValueInternal(null);
         }
 
-        private void SetValueInternal(OneRange? value)
+        private void SetValueInternal(Scalar? value)
         {
             lock (_valueLock)
             {

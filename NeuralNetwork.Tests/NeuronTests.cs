@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
 {
-    class NeuronTests
+    internal class NeuronTests
     {
         [Test]
         public void Neuron_Constructor_PropertiesSet()
@@ -25,7 +25,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
 
             neuron.SetValue(value);
 
-            Assert.AreEqual(new OneRange(value), neuron.GetValue());
+            Assert.AreEqual(new Scalar(value), neuron.GetValue());
         }
 
         [Test]
@@ -33,16 +33,15 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
         {
             var neuron = new Neuron(ActivationFunctions.Binairy, 1);
 
-            Assert.AreEqual(new OneRange(1), neuron.GetValue());
+            Assert.AreEqual(new Scalar(1), neuron.GetValue());
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Neuron_GetValue_NoActivationFunctionAndNoValue_Exception()
         {
             var neuron = new Neuron(null, 1);
 
-            neuron.GetValue();
+            Assert.Throws<ArgumentNullException>(() => neuron.GetValue());
         }
 
         [Test]
@@ -51,7 +50,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
             var neuron = new Neuron(null, 1);
 
             neuron.SetValue(0.5);
-            Assert.AreEqual(new OneRange(0.5), neuron.GetValue());
+            Assert.AreEqual(new Scalar(0.5), neuron.GetValue());
         }
 
         [TestCase(0)]
@@ -65,7 +64,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
             inputNeuron.AddSynapse(outputNeuron, 1);
 
             inputNeuron.SetValue(value);
-            Assert.AreEqual(new OneRange(value), outputNeuron.GetValue());
+            Assert.AreEqual(new Scalar(value), outputNeuron.GetValue());
         }
 
         [TestCase(0)]
@@ -81,7 +80,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
             inputNeuron.AddSynapse(outputNeuron, SYNAPSE_WEIGHT);
 
             inputNeuron.SetValue(value);
-            Assert.AreEqual(new OneRange(value * SYNAPSE_WEIGHT), outputNeuron.GetValue());
+            Assert.AreEqual(new Scalar(value * SYNAPSE_WEIGHT), outputNeuron.GetValue());
         }
 
         [TestCase(0, ExpectedResult = 0.5)]
@@ -130,7 +129,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
             Assert.IsEmpty(outputNeuron.OutputSynapses);
 
             inputNeuron.SetValue(1);
-            Assert.AreEqual(new OneRange(1), outputNeuron.GetValue());
+            Assert.AreEqual(new Scalar(1), outputNeuron.GetValue());
 
             inputNeuron.RemoveSynapse(outputNeuron);
 
@@ -139,8 +138,8 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests
             Assert.IsEmpty(outputNeuron.InputSynapses);
             Assert.IsEmpty(outputNeuron.OutputSynapses);
 
-            Assert.AreEqual(new OneRange(0), outputNeuron.GetValue());
-            Assert.AreEqual(new OneRange(1), inputNeuron.GetValue());
+            Assert.AreEqual(new Scalar(0), outputNeuron.GetValue());
+            Assert.AreEqual(new Scalar(1), inputNeuron.GetValue());
         }
     }
 }

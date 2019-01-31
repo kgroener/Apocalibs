@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA9A18D7-5593-4FCB-A1D5-5098768A703B}</ProjectGuid>
+    <ProjectGuid>{820B44C8-2854-4427-8A7C-4F133DB1817B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests</RootNamespace>
-    <AssemblyName>Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests</AssemblyName>
+    <RootNamespace>StateMachineTests</RootNamespace>
+    <AssemblyName>StateMachineTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -47,30 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivationFunctionTests.cs" />
-    <Compile Include="Layers\HiddenLayerTests.cs" />
-    <Compile Include="Layers\OutputLayerTests.cs" />
-    <Compile Include="Layers\InputLayerTests.cs" />
-    <Compile Include="NeuralNetworkTests.cs" />
-    <Compile Include="NeuronTests.cs" />
+    <Compile Include="StateMachineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{21028f7e-9127-4706-a320-edebdcf6366a}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\StateMachine\StateMachine.csproj">
+      <Project>{24f131e9-5842-45be-a03a-0788b2692ac3}</Project>
+      <Name>StateMachine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Enumerables\Enumerables.csproj">
-      <Project>{62719832-1965-4f12-9085-256ae11ffcfd}</Project>
-      <Name>Enumerables</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
-      <Project>{b77a08d6-43ce-4b53-b7a1-a0fa2217fbb2}</Project>
-      <Name>NeuralNetwork</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -18,7 +18,7 @@ namespace Apocalibs.ArtificialIntelligence.NeuralNetwork.Tests.Layers
             Assert.AreEqual(11, hiddenLayer.Neurons.Count());
 
             var constantNeuron = hiddenLayer.Neurons.Single(n => n.ActivationFunction == null);
-            Assert.AreEqual(new OneRange(1), constantNeuron.GetValue());
+            Assert.AreEqual(new Scalar(1), constantNeuron.GetValue());
             Assert.AreEqual(0, constantNeuron.Bias);
         }
 
