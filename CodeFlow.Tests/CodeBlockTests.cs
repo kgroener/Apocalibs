@@ -1,7 +1,6 @@
 using Apocalibs.CodeFlow.Fluent;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 
 namespace Tests
 {
@@ -13,7 +12,7 @@ namespace Tests
             {
                 return SetVar("message", () => "Hello World");
             }
-            
+
         }
 
 
@@ -39,7 +38,7 @@ namespace Tests
         }
 
         [Test]
-        public void CodeBlock_IfStatement_Predicate_Correct()
+        public void CodeBlock_IfStatement_Predicate_ThenBranch()
         {
             var codeBlock = new TestCodeBlock();
 
@@ -50,6 +49,26 @@ namespace Tests
                 .If((s) => s.GetVar<int>("A") != s.GetVar<int>("B"))
                 .Then((s) => s.SetVar("A", () => s.GetVar<int>("B")))
                 .Else((s) => s.SetVar("Error", () => true))
+                .EndIf();
+
+            codeBlock.Execute();
+
+            Assert.IsFalse(codeBlock.GetVar<bool>("Error"));
+            Assert.AreEqual(codeBlock.GetVar<int>("A"), codeBlock.GetVar<int>("B"));
+        }
+
+        [Test]
+        public void CodeBlock_IfStatement_Predicate_ElseBranch()
+        {
+            var codeBlock = new TestCodeBlock();
+
+            codeBlock
+                .SetVar("A", () => 10)
+                .SetVar("B", () => 15)
+                .SetVar("Error", () => false)
+                .If((s) => s.GetVar<int>("A") == s.GetVar<int>("B"))
+                .Then((s) => s.SetVar("Error", () => true))
+                .Else((s) => s.SetVar("A", () => s.GetVar<int>("B")))
                 .EndIf();
 
             codeBlock.Execute();
